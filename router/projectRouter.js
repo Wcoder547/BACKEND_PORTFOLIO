@@ -13,7 +13,7 @@ const router = express.Router();
 router.post("/add", isAuthenticated, addNewProject);
 router.delete("/delete/:id", isAuthenticated, deleteProject);
 router.put("/update/:id", isAuthenticated, updateProject);
-router.get("/get/:id", isAuthenticated, getSingleProject);
+router.get("/get/:id", getSingleProject);
 router.get("/getall", getAllProject);
 
 export default router;
