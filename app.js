@@ -14,8 +14,10 @@ import projectRouter from "./router/projectRouter.js";
 
 const app = express();
 dotenv.config({ path: "./config/config.env" });
-const allowedOrigins = ["*"];
 
+console.log("Portfolio URL:", process.env.PORTFOLIO_URL);
+console.log("Dashboard URL:", process.env.DASHBOARD_URL);
+const allowedOrigins = ["*"];
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -28,8 +30,6 @@ app.use(
     credentials: true,
   })
 );
-console.log("Portfolio URL:", process.env.PORTFOLIO_URL);
-console.log("Dashboard URL:", process.env.DASHBOARD_URL);
 
 app.use(cookieParser());
 app.use(express.json());
