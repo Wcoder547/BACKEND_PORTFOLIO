@@ -12,6 +12,6 @@ const router = express.Router();
 router.post("/add", isAuthenticated, addSkill);
 router.delete("/delete/:id", isAuthenticated, deleteSkill);
 router.put("/update/:id", isAuthenticated, updateSkill);
-router.get("/getall", isAuthenticated, getAllSkill);
+router.get("/getall", getAllSkill);
 
 export default router;
