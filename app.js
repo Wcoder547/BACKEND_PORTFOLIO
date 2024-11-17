@@ -17,16 +17,10 @@ dotenv.config({ path: "./config/config.env" });
 
 console.log("Portfolio URL:", process.env.PORTFOLIO_URL);
 console.log("Dashboard URL:", process.env.DASHBOARD_URL);
-const allowedOrigins = [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL];
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
