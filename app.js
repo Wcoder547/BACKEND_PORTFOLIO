@@ -14,19 +14,20 @@ import projectRouter from "./router/projectRouter.js";
 
 const app = express();
 dotenv.config({ path: "./config/config.env" });
+const allowedOrigins = [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL];
+
 app.use(
   cors({
     origin: (origin, callback) => {
-      const allowedOrigins = [
-        process.env.PORTFOLIO_URL,
-        process.env.DASHBOARD_URL,
-      ];
-      if (allowedOrigins.includes(origin)) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        // Allow requests with no origin (like mobile apps, Postman) or from allowed origins
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
       }
     },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
