@@ -16,11 +16,20 @@ const app = express();
 dotenv.config({ path: "./config/config.env" });
 app.use(
   cors({
-    origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        process.env.PORTFOLIO_URL,
+        process.env.DASHBOARD_URL,
+      ];
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   })
 );
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
