@@ -17,9 +17,14 @@ dotenv.config({ path: "./config/config.env" });
 
 console.log("Portfolio URL:", process.env.PORTFOLIO_URL);
 console.log("Dashboard URL:", process.env.DASHBOARD_URL);
+app.options("*", cors());
+
 app.use(
   cors({
-    origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+    origin: [
+      "https://waseemmalikportfolio.netlify.app",
+      "https://waseem-malik-portfolio-dashboard.netlify.app",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
