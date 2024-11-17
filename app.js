@@ -14,11 +14,18 @@ import projectRouter from "./router/projectRouter.js";
 
 const app = express();
 dotenv.config({ path: "./config/config.env" });
+const allowedOrigins = ["https://waseemmalikportfolio.netlify.app"];
+
 app.use(
   cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
   })
 );
 
