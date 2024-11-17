@@ -14,7 +14,10 @@ import projectRouter from "./router/projectRouter.js";
 
 const app = express();
 dotenv.config({ path: "./config/config.env" });
-const allowedOrigins = ["https://waseemmalikportfolio.netlify.app"];
+const allowedOrigins = [
+  "https://waseemmalikportfolio.netlify.app",
+  "https://waseem-malik-portfolio-dashboard.netlify.app ",
+];
 
 app.use(
   cors({
