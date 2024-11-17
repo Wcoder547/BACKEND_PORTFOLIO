@@ -10,6 +10,6 @@ const router = express.Router();
 
 router.post("/add", isAuthenticated, addNewSoftwareApplication);
 router.delete("/delete/:id", isAuthenticated, deleteSoftwareApplication);
-router.get("/getall", isAuthenticated, getAllSoftwareApplication);
+router.get("/getall", getAllSoftwareApplication);
 
 export default router;
