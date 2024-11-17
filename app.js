@@ -17,7 +17,7 @@ dotenv.config({ path: "./config/config.env" });
 
 console.log("Portfolio URL:", process.env.PORTFOLIO_URL);
 console.log("Dashboard URL:", process.env.DASHBOARD_URL);
-const allowedOrigins = ["*"];
+const allowedOrigins = [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL];
 app.use(
   cors({
     origin: (origin, callback) => {
